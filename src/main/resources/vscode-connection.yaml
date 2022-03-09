@@ -1,0 +1,85 @@
+---
+name: ip-network
+version: 1.0.0
+client:
+  organization: Org
+  connection:
+    timeout:
+      peer:
+        endorser: '300'
+      orderer: '300'
+
+organizations:
+  Org:
+    mspid: Org1MSP
+    peers:
+      - peer
+    certificateAuthorities:
+      - ca
+orderers:
+  orderer:
+    url: grpcs://localhost:7050
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICCjCCAbGgAwIBAgIUcUpVB6V7yKmfAoBuPuX6Z+q9l/AwCgYIKoZIzj0EAwIw
+        YjELMAkGA1UEBhMCVVMxETAPBgNVBAgTCE5ldyBZb3JrMREwDwYDVQQHEwhOZXcg
+        WW9yazEUMBIGA1UEChMLZXhhbXBsZS5jb20xFzAVBgNVBAMTDmNhLmV4YW1wbGUu
+        Y29tMB4XDTIxMTExMjE0MzMwMFoXDTM2MTEwODE0MzMwMFowYjELMAkGA1UEBhMC
+        VVMxETAPBgNVBAgTCE5ldyBZb3JrMREwDwYDVQQHEwhOZXcgWW9yazEUMBIGA1UE
+        ChMLZXhhbXBsZS5jb20xFzAVBgNVBAMTDmNhLmV4YW1wbGUuY29tMFkwEwYHKoZI
+        zj0CAQYIKoZIzj0DAQcDQgAE8+1Zff0SwiOcrB0br7ziz2jnSQJb6zLl3mMCUeAH
+        Wc6v+MzHNumpiXEzvCkYCy/nr3shKtsUc8+efygO9g8BRKNFMEMwDgYDVR0PAQH/
+        BAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8CAQEwHQYDVR0OBBYEFFvjYWt0KgoPjDZA
+        HDvIzykv1E32MAoGCCqGSM49BAMCA0cAMEQCIBjQOW/0o3LVn2BvdZVChkIVe8Za
+        L9khaumonhUIoRFLAiA92PZaglFp/cedkhYhtO1Ovsa/BFejIxHzJx5QJsgYVQ==
+        -----END CERTIFICATE-----
+
+peers:
+  peer:
+    url: grpcs://localhost:7051
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICJzCCAc2gAwIBAgIUKYbvzEI4GhjTFm8040cFUoLoYZowCgYIKoZIzj0EAwIw
+        cDELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMQ8wDQYDVQQH
+        EwZEdXJoYW0xGTAXBgNVBAoTEG9yZzEuZXhhbXBsZS5jb20xHDAaBgNVBAMTE2Nh
+        Lm9yZzEuZXhhbXBsZS5jb20wHhcNMjExMTEyMTQzMzAwWhcNMzYxMTA4MTQzMzAw
+        WjBwMQswCQYDVQQGEwJVUzEXMBUGA1UECBMOTm9ydGggQ2Fyb2xpbmExDzANBgNV
+        BAcTBkR1cmhhbTEZMBcGA1UEChMQb3JnMS5leGFtcGxlLmNvbTEcMBoGA1UEAxMT
+        Y2Eub3JnMS5leGFtcGxlLmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABN5E
+        0GTH9Sz4bMKNs9k5L3hL1VCrWrEcVr7iEovRWNO3us3pLP2ddFvJ2bRAVl1jLu9R
+        GpgcBILsHkx1/AzFfkmjRTBDMA4GA1UdDwEB/wQEAwIBBjASBgNVHRMBAf8ECDAG
+        AQH/AgEBMB0GA1UdDgQWBBRhb18KA5xFqHLSdgo2PShGtKMXCzAKBggqhkjOPQQD
+        AgNIADBFAiEAjQpNscHCe+q5DepCt8rNbvqfAUeHZkFP4RPdLpm1uTsCIB1KcIQK
+        iQVgpgALRcObiEZqHNi04PDIyp40Zop7XLmT
+        -----END CERTIFICATE-----
+
+    grpcOptions:
+      ssl-target-name-override: peer0.org1.example.com
+      hostnameOverride: peer0.org1.example.com
+
+certificateAuthorities:
+  ca:
+    url: https://localhost:7054
+    caName: ca-org1
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICJzCCAc2gAwIBAgIUKYbvzEI4GhjTFm8040cFUoLoYZowCgYIKoZIzj0EAwIw
+        cDELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMQ8wDQYDVQQH
+        EwZEdXJoYW0xGTAXBgNVBAoTEG9yZzEuZXhhbXBsZS5jb20xHDAaBgNVBAMTE2Nh
+        Lm9yZzEuZXhhbXBsZS5jb20wHhcNMjExMTEyMTQzMzAwWhcNMzYxMTA4MTQzMzAw
+        WjBwMQswCQYDVQQGEwJVUzEXMBUGA1UECBMOTm9ydGggQ2Fyb2xpbmExDzANBgNV
+        BAcTBkR1cmhhbTEZMBcGA1UEChMQb3JnMS5leGFtcGxlLmNvbTEcMBoGA1UEAxMT
+        Y2Eub3JnMS5leGFtcGxlLmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABN5E
+        0GTH9Sz4bMKNs9k5L3hL1VCrWrEcVr7iEovRWNO3us3pLP2ddFvJ2bRAVl1jLu9R
+        GpgcBILsHkx1/AzFfkmjRTBDMA4GA1UdDwEB/wQEAwIBBjASBgNVHRMBAf8ECDAG
+        AQH/AgEBMB0GA1UdDgQWBBRhb18KA5xFqHLSdgo2PShGtKMXCzAKBggqhkjOPQQD
+        AgNIADBFAiEAjQpNscHCe+q5DepCt8rNbvqfAUeHZkFP4RPdLpm1uTsCIB1KcIQK
+        iQVgpgALRcObiEZqHNi04PDIyp40Zop7XLmT
+        -----END CERTIFICATE-----
+
+    httpOptions:
+      verify: false
+

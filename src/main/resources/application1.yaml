@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: defiServer
+
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+
+
+hyperledger-fabric:
+  keystore: ./wallet
+  connectionFile: src/main/resources/connection-org1.yaml
+  defaultSigner: admin
+  channel: mychannel
+  chaincode: fiat
+  ca: https://localhost:7054
+  pemFile: ./pemWallet/ca.org1.example.com-cert.pem
+  affiliation: org1.department1
+  orgMSP: Org1MSP
+  orgNum: 1
+
+server:
+  port: 7080
+  wsPort: 7081
+
+google-settings:
+  clientId: 351379089570-p2v181qujg0h37lhiotokd56g65o5em3.apps.googleusercontent.com
+  clientSecret: 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
+
+blockDaemon:
+  apiKey: bd1bc0meoYrfp1sANZqKzB44QeWoB3LrEYKoiJfrt3N2jjH
+  ethPK: 8086a40ea5fcb7e445a4317fd20654543840374174fa5d8a0485a68351ed5ef4
+  ethPBK: 0xA97845d0f342218de104DC3E6712bd3D6a60AFf4
+
+coinmarketcapSetting:
+  apiKey: 17c1d270-49a9-43b3-98fc-5ee0b27c04fa
+
+exchanges:
+  exchangeList: Binance, Bitfinex, Bitflyer, Bithumb, Bitmex, Bitstamp, Bittrex, BTSE, COINUT, EXMO, CoinbasePro, FTX, GateIO, Gemini, HitBTC, Huobi, ITBIT, Kraken, LBank, LocalBitcoins, OKCOIN International, OKEX, Poloniex, Yobit, ZB
+
+kucoinSetting:
+  apiKey: 61a9f0de6a11a1000120ad7d
+  passphrase: Camila2017.
+  apiSecret: 157946dd-90d5-4e7a-b15f-7652a3ea0970
+  partner_id: Hummingbot
+  partner_key: 8fb50686-81a8-408a-901c-07c5ac5bd758
+
+binanceSetting:
+  apiKey: SV5uHFbgPIDNd0MPO6xZgDr1n8EQGu6nPzg2m6fhZITD7BITOBvlzFujh4D1O70R
+  apiSecret: XARArVoq5UmjjHvcCQZ6OJqm1l0tbeMJKVEBd0W7JzqDmjv8CpeVfFXxqJO3C2ly

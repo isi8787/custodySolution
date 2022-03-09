@@ -1,0 +1,384 @@
+{
+ "name": "Skynet",
+ "dataDirectory": "",
+ "encryptConfig": -1,
+ "globalHTTPTimeout": 15000000000,
+ "database": {
+  "enabled": false,
+  "verbose": false,
+  "driver": "sqlite",
+  "connectionDetails": {
+   "host": "",
+   "port": 0,
+   "username": "",
+   "password": "",
+   "database": "",
+   "sslmode": ""
+  }
+ },
+ "logging": {
+  "enabled": true,
+  "level": "INFO|WARN|DEBUG|ERROR",
+  "output": "console",
+  "fileSettings": {
+   "filename": "log.txt",
+   "rotate": true,
+   "maxsize": 250
+  },
+  "advancedSettings": {
+   "showLogSystemName": false,
+   "spacer": " | ",
+   "timeStampFormat": "02/01/2006 15:04:05",
+   "headers": {
+    "info": "[INFO] ",
+    "warn": "[WARN] ",
+    "debug": "[DEBUG]",
+    "error": "[ERROR]"
+   }
+  }
+ },
+ "connectionMonitor": {
+  "preferredDNSList": [
+   "8.8.8.8",
+   "8.8.4.4",
+   "1.1.1.1",
+   "1.0.0.1"
+  ],
+  "preferredDomainList": [
+   "www.google.com",
+   "www.cloudflare.com",
+   "www.facebook.com"
+  ],
+  "checkInterval": 1000000000
+ },
+ "dataHistoryManager": {
+  "enabled": false,
+  "checkInterval": 60000000000,
+  "maxJobsPerCycle": 5,
+  "maxResultInsertions": 0,
+  "verbose": false
+ },
+ "currencyStateManager": {
+  "enabled": true,
+  "delay": 60000000000
+ },
+ "profiler": {
+  "enabled": false,
+  "mutex_profile_fraction": 0
+ },
+ "ntpclient": {
+  "enabled": 1,
+  "pool": [
+   "pool.ntp.org:123"
+  ],
+  "allowedDifference": 50000000,
+  "allowedNegativeDifference": 50000000
+ },
+ "gctscript": {
+  "enabled": true,
+  "timeout": 60000000000,
+  "max_virtual_machines": 10,
+  "allow_imports": true,
+  "auto_load": [],
+  "verbose": false
+ },
+ "currencyConfig": {
+  "forexProviders": [
+   {
+    "name": "CurrencyConverter",
+    "enabled": false,
+    "verbose": false,
+    "restPollingDelay": 600,
+    "apiKey": "Key",
+    "apiKeyLvl": -1,
+    "primaryProvider": false
+   },
+   {
+    "name": "CurrencyLayer",
+    "enabled": false,
+    "verbose": false,
+    "restPollingDelay": 600,
+    "apiKey": "Key",
+    "apiKeyLvl": -1,
+    "primaryProvider": false
+   },
+   {
+    "name": "Fixer",
+    "enabled": false,
+    "verbose": false,
+    "restPollingDelay": 600,
+    "apiKey": "Key",
+    "apiKeyLvl": -1,
+    "primaryProvider": false
+   },
+   {
+    "name": "OpenExchangeRates",
+    "enabled": false,
+    "verbose": false,
+    "restPollingDelay": 600,
+    "apiKey": "Key",
+    "apiKeyLvl": -1,
+    "primaryProvider": false
+   },
+   {
+    "name": "ExchangeRates",
+    "enabled": false,
+    "verbose": false,
+    "restPollingDelay": 600,
+    "apiKey": "Key",
+    "apiKeyLvl": -1,
+    "primaryProvider": false
+   },
+   {
+    "name": "ExchangeRateHost",
+    "enabled": true,
+    "verbose": false,
+    "restPollingDelay": 600,
+    "apiKey": "Key",
+    "apiKeyLvl": -1,
+    "primaryProvider": true
+   }
+  ],
+  "cryptocurrencyProvider": {
+   "name": "CoinMarketCap",
+   "enabled": false,
+   "verbose": false,
+   "apiKey": "Key",
+   "accountPlan": "accountPlan"
+  },
+  "cryptocurrencies": "BTC,LTC,ETH,XRP,NMC,NVC,PPC,XBT,DOGE,DASH",
+  "currencyPairFormat": {
+   "uppercase": true,
+   "delimiter": "-"
+  },
+  "fiatDisplayCurrency": "USD",
+  "currencyFileUpdateDuration": 0,
+  "foreignExchangeUpdateDuration": 0
+ },
+ "communications": {
+  "slack": {
+   "name": "Slack",
+   "enabled": false,
+   "verbose": false,
+   "targetChannel": "general",
+   "verificationToken": "testtest"
+  },
+  "smsGlobal": {
+   "name": "SMSGlobal",
+   "from": "Skynet",
+   "enabled": false,
+   "verbose": false,
+   "username": "Username",
+   "password": "Password",
+   "contacts": [
+    {
+     "name": "Bob",
+     "number": "12345",
+     "enabled": false
+    }
+   ]
+  },
+  "smtp": {
+   "name": "SMTP",
+   "enabled": false,
+   "verbose": false,
+   "host": "smtp.google.com",
+   "port": "537",
+   "accountName": "some",
+   "accountPassword": "password",
+   "from": "",
+   "recipientList": "lol123@gmail.com"
+  },
+  "telegram": {
+   "name": "Telegram",
+   "enabled": false,
+   "verbose": false,
+   "verificationToken": "testest"
+  }
+ },
+ "remoteControl": {
+  "username": "admin",
+  "password": "Password",
+  "gRPC": {
+   "enabled": true,
+   "listenAddress": "localhost:9052",
+   "grpcProxyEnabled": true,
+   "grpcProxyListenAddress": "0.0.0.0:9053",
+   "timeInNanoSeconds": false
+  },
+  "deprecatedRPC": {
+   "enabled": true,
+   "listenAddress": "localhost:9050"
+  },
+  "websocketRPC": {
+   "enabled": true,
+   "listenAddress": "localhost:9051",
+   "connectionLimit": 1,
+   "maxAuthFailures": 3,
+   "allowInsecureOrigin": true
+  }
+ },
+ "portfolioAddresses": {
+  "addresses": [
+   {
+    "Address": "1JCe8z4jJVNXSjohjM4i9Hh813dLCNx2Sy",
+    "AddressTag": "",
+    "CoinType": "BTC",
+    "Balance": 0.00108832,
+    "Description": "",
+    "WhiteListed": false,
+    "ColdStorage": false,
+    "SupportedExchanges": ""
+   },
+   {
+    "Address": "3Nxwenay9Z8Lc9JBiywExpnEFiLp6Afp8v",
+    "AddressTag": "",
+    "CoinType": "BTC",
+    "Balance": 0.00905205,
+    "Description": "",
+    "WhiteListed": false,
+    "ColdStorage": false,
+    "SupportedExchanges": ""
+   },
+   {
+    "Address": "LgY8ahfHRhvjVQC1zJnBhFMG5pCTMuKRqh",
+    "AddressTag": "",
+    "CoinType": "LTC",
+    "Balance": 0.03665026,
+    "Description": "",
+    "WhiteListed": false,
+    "ColdStorage": false,
+    "SupportedExchanges": ""
+   },
+   {
+    "Address": "0xb794f5ea0ba39494ce839613fffba74279579268",
+    "AddressTag": "",
+    "CoinType": "ETH",
+    "Balance": 0.32085229551323674,
+    "Description": "",
+    "WhiteListed": false,
+    "ColdStorage": false,
+    "SupportedExchanges": ""
+   }
+  ],
+  "Verbose": false
+ },
+ "exchanges": [
+  {
+   "name": "Kraken",
+   "enabled": true,
+   "verbose": false,
+   "httpTimeout": 15000000000,
+   "websocketResponseCheckTimeout": 30000000,
+   "websocketResponseMaxLimit": 7000000000,
+   "websocketTrafficTimeout": 30000000000,
+   "baseCurrencies": "EUR,USD,CAD,GBP,JPY",
+   "currencyPairs": {
+    "bypassConfigFormatUpgrades": false,
+    "pairs": {
+     "futures": {
+      "assetEnabled": true,
+      "enabled": "FI_XRPUSD_220325",
+      "available": "PI_XBTUSD,PI_ETHUSD,PI_LTCUSD,PI_BCHUSD,PI_XRPUSD,FI_ETHUSD_211231,FI_XBTUSD_211231,FI_XBTUSD_220325,FI_ETHUSD_220325,FI_XRPUSD_211231,FI_BCHUSD_211231,FI_LTCUSD_211231,FI_XBTUSD_220624,FI_ETHUSD_220624,FI_BCHUSD_220325,FI_XRPUSD_220325,FI_LTCUSD_220325",
+      "requestFormat": {
+       "uppercase": true,
+       "delimiter": "_"
+      },
+      "configFormat": {
+       "uppercase": true,
+       "delimiter": "_"
+      }
+     },
+     "spot": {
+      "assetEnabled": true,
+      "enabled": "ETH-USD",
+      "available": "DASH_USD,SOL_GBP,CTSI_EUR,DYDX_EUR,XBT_DAI,XBT_JPY,XMR_XBT,XRP_USD,ZRX_GBP,CQT_EUR,SUSHI_USD,WBTC_EUR,ADA_USD,EWT_USD,MKR_EUR,OCEAN_EUR,PHA_EUR,TBTC_XBT,XLM_XBT,ENJ_GBP,MANA_ETH,BADGER_USD,BNC_EUR,FIL_ETH,FLOW_ETH,KILT_USD,USDT_USD,WAVES_USD,ETH_USDT,GHST_XBT,MLN_USD,ADA_USDT,ALGO_USD,ANT_EUR,FIL_XBT,KAVA_XBT,MOVR_EUR,QTUM_XBT,UNI_ETH,XDG_EUR,YFI_ETH,ATOM_XBT,BAT_ETH,DAI_USD,OCEAN_GBP,OXY_EUR,SAND_EUR,SNX_GBP,SNX_XBT,XBT_CHF,GBP_USD,ADA_XBT,COMP_USD,DAI_USDT,LINK_AUD,LSK_EUR,SDN_EUR,XRP_USDT,BAL_ETH,BAND_USD,EOS_EUR,FIL_AUD,GRT_USD,PAXG_ETH,SUSHI_GBP,GRT_ETH,KNC_USD,KSM_GBP,LINK_USD,LSK_XBT,OXT_EUR,SC_EUR,REP_ETH,ZRX_EUR,FIL_EUR,KEEP_XBT,USDT_EUR,AAVE_ETH,DOT_EUR,EOS_USDT,EWT_EUR,FLOW_XBT,LRC_EUR,SOL_EUR,TRX_USD,CRV_EUR,ETH_CHF,EUR_JPY,MKR_XBT,USDT_GBP,XBT_USDC,XDG_USDT,XLM_EUR,XRP_JPY,ATOM_USD,BCH_ETH,COMP_ETH,ETH_AUD,MATIC_GBP,WAVES_XBT,XTZ_AUD,XLM_GBP,DOT_ETH,LSK_USD,PAXG_XBT,RARI_EUR,ETH_JPY,ANT_USD,DYDX_USD,MKR_GBP,OMG_XBT,ANKR_XBT,ETH_DAI,GRT_AUD,OCEAN_XBT,XRP_CAD,AAVE_XBT,KAVA_EUR,OXY_USD,SAND_GBP,XLM_AUD,AXS_USD,EOS_USD,REN_GBP,TBTC_ETH,XDG_USD,LTC_XBT,OGN_USD,REN_XBT,USDC_GBP,ALGO_ETH,ANT_XBT,GHST_EUR,ICX_ETH,SRM_GBP,STORJ_XBT,TRX_EUR,TRX_XBT,WAVES_ETH,REP_XBT,ATOM_GBP,BAND_EUR,DAI_EUR,DOT_GBP,KAR_USD,MINA_XBT,XTZ_USD,BCH_XBT,ENJ_XBT,EOS_ETH,FLOW_USD,INJ_USD,SRM_EUR,STORJ_USD,BCH_USDT,EWT_GBP,REN_EUR,USD_CHF,XBT_AUD,XDG_XBT,1inch_EUR,AAVE_EUR,ETH2.S_ETH,UNI_USD,EUR_USD,ADA_ETH,KEEP_USD,KNC_EUR,RARI_XBT,SC_USD,SRM_XBT,XTZ_ETH,CTSI_USD,LPT_USD,REPV2_XBT,SRM_USD,USDT_CHF,BNC_USD,DASH_EUR,GHST_USD,MLN_EUR,BAL_EUR,CRV_XBT,KEEP_EUR,KSM_AUD,KSM_EUR,LSK_ETH,LTC_AUD,RARI_GBP,SNX_USD,ETH_CAD,DOT_XBT,GNO_EUR,MANA_USD,SAND_XBT,XRP_GBP,ZEC_USD,1inch_USD,ALGO_EUR,CHZ_USD,KSM_XBT,SHIB_EUR,XRP_XBT,ALGO_XBT,BCH_AUD,FLOW_GBP,GNO_XBT,LINK_XBT,MINA_GBP,RAY_EUR,USDC_USDT,AUD_USD,GNO_ETH,KSM_USD,MINA_USD,OCEAN_USD,ETC_ETH,LTC_USD,XTZ_EUR,XBT_GBP,ZEC_EUR,BAT_EUR,EUR_CAD,PERP_EUR,RAY_USD,LTC_EUR,YFI_USD,BAL_XBT,KAVA_USD,BAT_USD,ICX_USD,KEEP_ETH,REPV2_EUR,REP_USD,BNT_XBT,ENJ_EUR,EUR_CHF,SUSHI_XBT,USDT_AUD,MLN_XBT,GRT_XBT,KNC_XBT,LINK_USDT,SAND_USD,XBT_CAD,BCH_JPY,BNT_USD,DOT_USDT,NANO_ETH,WBTC_USD,KILT_EUR,KNC_ETH,KSM_DOT,REPV2_USD,SOL_USD,XRP_AUD,XRP_ETH,COMP_XBT,EUR_AUD,ICX_EUR,MANA_XBT,MKR_USD,ETH_XBT,XLM_USD,ANKR_EUR,ATOM_AUD,NANO_USD,OXT_USD,SC_ETH,YFI_GBP,COMP_EUR,CRV_USD,KAR_EUR,LPT_EUR,SHIB_USD,SNX_EUR,XBT_USDT,XMR_EUR,INJ_EUR,MOVR_USD,OXT_ETH,EWT_XBT,GRT_EUR,LRC_USD,MIR_USD,QTUM_EUR,ETC_EUR,AAVE_GBP,QTUM_USD,SC_XBT,USDC_USD,LTC_JPY,REP_EUR,XRP_EUR,ZEC_XBT,LINK_ETH,LTC_ETH,PAXG_USD,PERP_USD,TBTC_EUR,USDC_EUR,GNO_USD,KSM_ETH,MINA_EUR,SOL_XBT,UNI_XBT,ETC_XBT,ETC_USD,XMR_USD,YFI_EUR,ADA_EUR,ALGO_GBP,BAL_USD,BNT_EUR,FLOW_EUR,XBT_USD,BADGER_EUR,BCH_GBP,DOT_AUD,LTC_USDT,REN_USD,TRX_ETH,WAVES_EUR,XTZ_XBT,EOS_XBT,OMG_USD,QTUM_ETH,USDT_CAD,MLN_ETH,CQT_USD,KAVA_ETH,LPT_XBT,SUSHI_EUR,ZRX_USD,ICX_XBT,STORJ_EUR,UNI_EUR,USDT_JPY,ZRX_XBT,AAVE_USD,LINK_GBP,TBTC_USD,USDC_AUD,ANKR_GBP,AUD_JPY,AXS_EUR,BCH_EUR,CHZ_EUR,CRV_ETH,EUR_GBP,LINK_EUR,MANA_EUR,RARI_USD,XBT_EUR,USD_CAD,USD_JPY,AAVE_AUD,ETH_USDC,LTC_GBP,MATIC_EUR,OMG_ETH,OMG_EUR,OXT_XBT,STORJ_ETH,FIL_GBP,MATIC_USD,YFI_AUD,ADA_GBP,DASH_XBT,GHST_GBP,MATIC_XBT,PAXG_EUR,ETH_EUR,BAT_XBT,BCH_USD,DOT_USD,SNX_ETH,ANKR_USD,LPT_GBP,NANO_XBT,ADA_AUD,ATOM_ETH,ATOM_EUR,BNT_GBP,GRT_GBP,MIR_EUR,OGN_EUR,PHA_USD,REPV2_ETH,SDN_USD,WBTC_XBT,XTZ_GBP,ANT_ETH,ENJ_USD,FIL_USD,NANO_EUR,SNX_AUD,ETH_GBP,ETH_USD,YFI_XBT",
+      "requestFormat": {
+       "uppercase": true,
+       "separator": ","
+      },
+      "configFormat": {
+       "uppercase": true,
+       "delimiter": "_",
+       "separator": ","
+      }
+     }
+    }
+   },
+   "api": {
+    "authenticatedSupport": true,
+    "authenticatedWebsocketApiSupport": true,
+    "credentials": {
+     "key": "BvlNp0L4TOe06Tw9qQ4cu1O3RRHWWyio29aFOu1GwvLtfg2Ob5UWFu9L",
+     "secret": "0WZGjEZh0xSpPv67ipcCfYJh7NueiZPPAPIgEQ+x5QEKuDxaID7UX/Q2eKUUEFO9MHervKOTlhkkmMjTAMsqGg=="
+    },
+    "credentialsValidator": {
+     "requiresKey": true,
+     "requiresSecret": true,
+     "requiresBase64DecodeSecret": true
+    },
+    "urlEndpoints": {
+     "RestFuturesURL": "https://futures.kraken.com/derivatives",
+     "RestSpotURL": "https://api.kraken.com",
+     "WebsocketSpotURL": "wss://ws.kraken.com"
+    }
+   },
+   "features": {
+    "supports": {
+     "restAPI": true,
+     "restCapabilities": {
+      "tickerBatching": true,
+      "autoPairUpdates": true
+     },
+     "websocketAPI": true,
+     "websocketCapabilities": {}
+    },
+    "enabled": {
+     "autoPairUpdates": true,
+     "websocketAPI": true,
+     "saveTradeData": false,
+     "tradeFeed": false,
+     "fillsFeed": false
+    }
+   },
+   "bankAccounts": [
+    {
+     "enabled": false,
+     "bankName": "",
+     "bankAddress": "",
+     "bankPostalCode": "",
+     "bankPostalCity": "",
+     "bankCountry": "",
+     "accountName": "",
+     "accountNumber": "",
+     "swiftCode": "",
+     "iban": "",
+     "supportedCurrencies": ""
+    }
+   ],
+   "orderbook": {
+    "verificationBypass": false,
+    "websocketBufferLimit": 5,
+    "websocketBufferEnabled": false,
+    "publishPeriod": 10000000000
+   }
+  }
+ ],
+ "bankAccounts": [
+  {
+   "enabled": false,
+   "id": "test-account-01",
+   "bankName": "test",
+   "bankAddress": "test",
+   "bankPostalCode": "",
+   "bankPostalCity": "",
+   "bankCountry": "",
+   "accountName": "TestAccount",
+   "accountNumber": "0234",
+   "swiftCode": "91272837",
+   "iban": "98218738671897",
+   "supportedCurrencies": "USD",
+   "supportedExchanges": "Kraken,Bitstamp"
+  }
+ ]
+}

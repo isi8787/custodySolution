@@ -1,0 +1,14 @@
+FROM openjdk:11
+
+RUN apt-get update \
+ && DEBIAN_FRONTEND=noninteractive \
+    apt-get install --no-install-recommends --assume-yes \
+      ca-certificates \
+      curl \
+      gnupg \
+      lsb-release \
+      apt-transport-https \
+      software-properties-common \
+      docker-compose \
+      docker.io
+

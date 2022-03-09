@@ -1,0 +1,590 @@
+swagger: "2.0"
+info:
+  description: "Working Document Defi Client"
+  version: "1.0.0"
+  title: "Defi Client"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "isaac.markus@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost"
+basePath: "/v1"
+tags:
+  - name: "token"
+    description: "Initialize, mint, burn, transfer tokens"
+    externalDocs:
+      description: "Find out more"
+      url: "http://swagger.io"
+  - name: "account"
+    description: "Account functions"
+  - name: "user"
+    description: "Operations about user"
+    externalDocs:
+      description: "Find out more about our store"
+      url: "http://swagger.io"
+schemes:
+  - "https"
+  - "http"
+paths:
+  /login/getUser:
+    get:
+      tags:
+        - "user"
+      summary: "Get user information ising OAuth2 access token and will register user if not found in our network"
+      operationId: "get user info"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Authorization"
+          in: "header"
+          description: "Currently google OAuth2 access token"
+          type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/BasicProfile"
+        "400":
+          description: "Invalid value"
+  /getTokenList:
+    get:
+      tags:
+        - "token"
+      summary: "Get List of Tokens Initialized"
+      description: ""
+      operationId: "token list of registered assets for network"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Authorization"
+          in: "header"
+          description: "Currently google OAuth2 access token"
+          type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/TokenList"
+        "405":
+          description: "Invalid input"
+  /token:
+    post:
+      tags:
+        - "token"
+      summary: "Initialize new token"
+      description: ""
+      operationId: "initToken"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Token object that needs to be initialize"
+          required: true
+          schema:
+            $ref: "#/definitions/Token"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/InitTokenResponse"
+        "405":
+          description: "Invalid input"
+  /token/{tokenId}/issue:
+    put:
+      tags:
+        - "token"
+      summary: "Issue new token"
+      description: ""
+      operationId: "issueToken"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "tokenId"
+          in: "path"
+          description: "ID of token"
+          required: true
+          type: "string"
+        - name: "quantity"
+          in: "query"
+          description: "Quantity to Mint"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/SimpleResponse"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Token not found"
+        "405":
+          description: "Validation exception"
+  /token/{tokenId}/burn:
+    put:
+      tags:
+        - "token"
+      summary: "Burn token"
+      description: ""
+      operationId: "burnToken"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "tokenId"
+          in: "path"
+          description: "ID of token"
+          required: true
+          type: "string"
+        - name: "quantity"
+          in: "query"
+          description: "Quantity to Burn"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/SimpleResponse"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Token not found"
+        "405":
+          description: "Validation exception"
+  /transferToken/{tokenId}/{orgId}/{userId}/{quantity}:
+    put:
+      tags:
+        - "token"
+      summary: "Transfer Token By user and org id"
+      description: ""
+      operationId: "transferToken"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Authorization"
+          in: "header"
+          description: "Currently google OAuth2 access token"
+          type: "string"
+        - name: "tokenId"
+          in: "path"
+          description: "ID of token"
+          required: true
+          type: "string"
+        - name: "orgId"
+          in: "path"
+          description: "ID of organization of receiver "
+          required: true
+          type: "string"
+        - name: "userId"
+          in: "path"
+          description: "ID of receiver"
+          required: true
+          type: "string"
+        - name: "quantity"
+          in: "path"
+          description: "quantity to transfer"
+          required: true
+          type: "number"
+          format: "float"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/SimpleResponse"
+        "400":
+          description: "Invalid status value"
+  /transferToken/{tokenId}/{quantity}:
+    put:
+      tags:
+        - "token"
+      summary: "Transfer Token By Email or Phone defintion"
+      description: ""
+      operationId: "transferToken by email or phone"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Authorization"
+          in: "header"
+          description: "Currently google OAuth2 access token"
+          type: "string"
+        - name: "tokenId"
+          in: "path"
+          description: "ID of token"
+          required: true
+          type: "string"
+        - name: "quantity"
+          in: "path"
+          description: "qunatity to transfer"
+          required: true
+          type: "number"
+          format: "float"
+        - name: "phone"
+          in: "query"
+          type: "string"
+          description: "Phone number of user to receive tokens"
+        - name: "email"
+          in: "query"
+          type: "string"
+          description: "Email of user to receive tokens"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/SimpleResponse"
+        "400":
+          description: "Invalid status value"
+  /createUserAccount/{tokenId}:
+    put:
+      tags:
+        - "account"
+      summary: "Create new user account for target token"
+      operationId: "createAccount"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Authorization"
+          in: "header"
+          description: "Currently google OAuth2 access token"
+          type: "string"
+        - name: "tokenId"
+          in: "path"
+          description: "ID of token"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/AccountResponse"
+        "400":
+          description: "Invalid value"
+  /account/addRole:
+    put:
+      tags:
+        - "account"
+      summary: "Update Role for User Account"
+      operationId: "addRole"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Add Role to User"
+          required: true
+          schema:
+            $ref: "#/definitions/AddRole"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/SimpleResponse"
+        "400":
+          description: "Invalid value"
+  /account/getBalance:
+    get:
+      tags:
+        - "account"
+      summary: "Get Balance for User Account"
+      operationId: "getBalance"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "token"
+          in: "query"
+          description: "The token Id"
+          required: true
+          type: "string"
+        - name: "Org_id"
+          in: "query"
+          description: "Organization Id"
+          required: true
+          type: "string"
+        - name: "User_id"
+          in: "query"
+          description: "The user id"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/BalanceResponse"
+        "400":
+          description: "Invalid value"
+  /account/getAccountTxHistory:
+    get:
+      tags:
+        - "account"
+      summary: "Get Tx History for User Account"
+      operationId: "getTxHistory"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "token"
+          in: "query"
+          description: "The token Id"
+          required: true
+          type: "string"
+        - name: "Org_id"
+          in: "query"
+          description: "Organization Id"
+          required: true
+          type: "string"
+        - name: "User_id"
+          in: "query"
+          description: "The user id"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/TxHistoryResponse"
+        "400":
+          description: "Invalid value"
+definitions:
+  InitTokenResponse:
+    type: "object"
+    properties:
+      AssetType:
+        type: "string"
+      Token_id:
+        type: "string"
+      Token_name:
+        type: "string"
+      Token_desc:
+        type: "string"
+      Token_type:
+        type: "string"
+      Behavior:
+        type: "array"
+        items:
+          type: "string"
+      Roles:
+        type: "object"
+        properties:
+          minter_role_name:
+            type: "string"
+      Mintable:
+        type: "object"
+        properties:
+          Max_mint_quantity:
+            type: "number"
+            format: "float"
+      Divisable:
+        type: "object"
+        properties:
+          Decimal:
+            type: "number"
+            format: "float"
+      Currency_name:
+        type: "string"
+      Token_to_currency_ratio:
+        type: "string"
+  SimpleResponse:
+    type: "object"
+    properties:
+      msg:
+        type: "string"
+  BalanceResponse:
+    type: "object"
+    properties:
+      msg:
+        type: "string"
+      user_balance:
+        type: "number"
+        format: "float"
+  TxHistoryResponse:
+    type: "array"
+    items:
+      type: "object"
+      properties:
+        balance:
+          type: "number"
+          format: "float"
+        onhold_balance:
+          type: "number"
+          format: "float"
+        timestamp:
+          type: "string"
+        token_id:
+          type: "string"
+        transacted_account:
+          type: "string"
+        transacted_amount:
+          type: "number"
+          format: "float"
+        transaction_id:
+          type: "string"
+        transaction_type:
+          type: "string"
+          enum:
+            - "MINT"
+            - "DEBIT"
+            - "BURN"
+            - "ONHOLD"
+            - "EXECUTEHOLD"
+            - "RELEASEHOLD"
+            - "TRANSFER"
+            - "BULKTRANSFER"
+            - "CREDIT"
+  AddRole:
+    type: "object"
+    required:
+      - "Token_id"
+      - "Role"
+      - "Org_id"
+      - "User_id"
+    properties:
+      Token_id:
+        type: "string"
+      Org_id:
+        type: "string"
+      User_id:
+        type: "string"
+      Role:
+        type: "string"
+  TransferToken:
+    type: "object"
+    required:
+      - "Org_id"
+      - "User_id"
+      - "Quantity"
+    properties:
+      Org_id:
+        type: "string"
+      User_id:
+        type: "string"
+      Quantity:
+        type: "number"
+        format: "float"
+        example: 1.234
+  TokenList:
+    type: "array"
+    items:
+      $ref: "#/definitions/Token"
+  Token:
+    type: "object"
+    required:
+      - "Token_id"
+      - "Token_desc"
+    properties:
+      Token_id:
+        type: "string"
+      Token_desc:
+        type: "string"
+      Token_name:
+        type: "string"
+      Token_type:
+        type: "string"
+      Token_symbol:
+        type: "string"
+      Currency_name:
+        type: "string"
+        enum:
+          - "USD"
+          - "EUR"
+      Token_to_currency_ratio:
+        type: "integer"
+        format: "int32"
+      Roles:
+        type: "object"
+        properties:
+          minter_role_name:
+            type: "string"
+      Mintable:
+        type: "object"
+        properties:
+          Max_mint_quantity:
+            type: "integer"
+            format: "int32"
+      Behavior:
+        type: "array"
+        items:
+          type: "string"
+      AssetType:
+        type: "string"
+  BasicProfile:
+    type: "object"
+    required:
+      - "id"
+    properties:
+      id:
+        type: "string"
+      email:
+        type: "string"
+      verified_email:
+        type: "boolean"
+      given_name:
+        type: "string"
+      family_name:
+        type: "string"
+      phone:
+        type: "string"
+      orgId:
+        type: "string"
+  Account:
+    type: "object"
+    required:
+      - "Token_id"
+      - "Org_id"
+      - "User_id"
+    properties:
+      Token_id:
+        type: "string"
+      Org_id:
+        type: "string"
+      User_id:
+        type: "string"
+  AccountResponse:
+    type: "object"
+    properties:
+      AssetType:
+        type: "string"
+      AccountId:
+        type: "string"
+      UserId:
+        type: "string"
+      OrgId:
+        type: "string"
+      TokenId:
+        type: "string"
+      TokenName:
+        type: "string"
+      Balance:
+        type: "number"
+        format: "float"
+      BalanceOnHold:
+        type: "number"
+        format: "float"
+      keystore:
+        type: "object"
+        additionalProperties:
+          type: "object"
+          properties:
+            curveName:
+              type: "string"
+            curveType:
+              type: "string"
+            pX:
+              type: "string"
+            pY:
+              type: "string"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
